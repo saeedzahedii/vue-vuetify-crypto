@@ -1,10 +1,10 @@
 <template>
     <v-app>
-        <v-card color="grey lighten-4" flat tile>
+        <!-- <v-card color="grey lighten-4" flat tile>
             <v-toolbar dense @click.stop="mini = !mini">
                 <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-                <v-toolbar-title>Title</v-toolbar-title>
+                <v-toolbar-title>Crypto Dashboard</v-toolbar-title>
 
                 <v-spacer></v-spacer>
 
@@ -41,6 +41,9 @@
                     <v-list-item-content>
                         <v-list-item-title>John Leider</v-list-item-title>
                     </v-list-item-content>
+                    <v-btn icon @click.stop="mini = !mini">
+                        <v-icon>mdi-chevron-left</v-icon>
+                    </v-btn>
                 </v-list-item>
 
                 <v-divider></v-divider>
@@ -57,7 +60,8 @@
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
-        </v-sheet>
+        </v-sheet> -->
+        <h1>Home</h1>
     </v-app>
 </template>
 
