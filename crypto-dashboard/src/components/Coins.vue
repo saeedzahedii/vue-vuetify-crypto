@@ -28,7 +28,10 @@
                             <td><img :src="coin.iconUrl" alt="" /></td>
                             <td>{{ coin.rank }}</td>
                             <td>{{ coin.symbol }}</td>
-                            <td>{{ coin.name }}</td>
+                            <td>
+                                <router-link :to="{ name: 'coindetail', params: { uuid: coin.uuid } }">{{ coin.name }}
+                                </router-link>
+                            </td>
                             <td>{{ coin.price }}</td>
                             <td>{{ coin.change }}</td>
                             <td>{{ coin.hVolume }}</td>
@@ -65,15 +68,6 @@ export default {
             tabs: null,
             coinsList: [],
             displayCoinList: [],
-            value: [
-                423,
-                446,
-                675,
-                510,
-                590,
-                610,
-                760,
-            ],
         }
     },
     mounted() {

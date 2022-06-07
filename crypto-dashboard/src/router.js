@@ -1,6 +1,7 @@
 import Home from './components/Home'
 import NavBar from './components/NavBar'
 import Coins from './components/Coins'
+import CoinDetail from './components/CoinDetail'
 import Search from './components/Search'
 
 export default [{
@@ -14,4 +15,8 @@ export default [{
 },
 {
     path: '/coins', component: Coins
-}]
+},
+{
+    path: '/coins/:uuid',name:'coindetail', component: CoinDetail
+}
+]
