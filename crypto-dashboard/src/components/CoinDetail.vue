@@ -1,9 +1,9 @@
 <template>
     <v-app>
         <!-- {{ $route.params.uuid }} -->
-        <v-card class="pa-5">
-            <v-card flat class="d-flex justify-space-between py-5">
-                <v-card flat class="d-flex justify-start align-center">
+        <v-card color="#d1d1d1" class="pa-5">
+            <v-card color="#d1d1d1" flat class="d-flex justify-space-between py-5">
+                <v-card color="#d1d1d1" flat class="d-flex justify-start align-center">
                     <img class="mr-3" :src="coinDetail.iconUrl" alt="">
                     <span class="font-weight-black">{{ coinDetail.name }} - {{ coinDetail.symbol }} <span
                             :style="{ color: (coinDetail.change > 0) ? 'green' : 'red' }" class="ml-5"><span
@@ -12,26 +12,26 @@
                                 }} %</span>
                     </span>
                 </v-card>
-                <v-card flat>
+                <v-card color="#d1d1d1" flat>
                     <a :href="coinDetail.websiteUrl" target="_blank">
-                        <v-btn outlined color="primary">
+                        <v-btn color="yellow">
                             See Website <v-icon class="ml-2">mdi-web</v-icon>
                         </v-btn>
                     </a>
                 </v-card>
             </v-card>
             <v-divider class="pb-5"></v-divider>
-            <v-card flat v-html="coinDetail.description">
+            <v-card color="#d1d1d1" flat v-html="coinDetail.description">
             </v-card>
         </v-card>
-        <v-card flat class="d-flex justify-start py-5 mt-1">
+        <v-card color="#d1d1d1" flat class="d-flex justify-start flex-wrap pa-5 my-4">
             <a v-for="link in coinDetail.links" :key="link.id" :href="link.url" target="_blank">
-                <v-btn outlined color="primary" class="mr-3">
+                <v-btn color="yellow" class="mr-3 mt-3">
                     {{ link.type }}
                 </v-btn>
             </a>
         </v-card>
-        <v-card flat class="d-flex" dark>
+        <v-card flat class="d-flex flex-wrap" dark>
             <v-card flat class="d-flex mt-2">
                 <v-card flat class="pa-5" width="250px">
                     <p>Market Cap <br> {{ coinDetail.marketCap }} </p>
@@ -48,8 +48,9 @@
                     <p> Number of Circulating Coins <br> {{ coinDetail.supply.circulating }} </p>
                 </v-card>
             </v-card>
-            <v-sparkline color="yellow" line-width="1" padding="25" smooth="0" :value="getSparkLine(coinDetail.sparkline)">
-            </v-sparkline>
+                <v-sparkline color="yellow" line-width="1" padding="25" smooth="0"
+                    :value="getSparkLine(coinDetail.sparkline)">
+                </v-sparkline>
         </v-card>
     </v-app>
 </template>

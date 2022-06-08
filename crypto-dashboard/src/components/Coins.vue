@@ -1,5 +1,5 @@
 <template>
-    <v-card class="pa-5" elevation="4" shaped>
+    <v-card dark class="pa-5" elevation="4" shaped>
         <v-tabs left v-model="tabs">
             <v-tab>
                 <v-icon>mdi-currency-btc</v-icon> Coins
@@ -9,49 +9,54 @@
             </v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tabs">
+        <v-tabs-items dark v-model="tabs">
             <v-tab-item>
                 <v-card>
                     <table class="mt-5" style="width: 100%">
-                        <tr class="thead">
-                            <th>#</th>
-                            <th>Rank</th>
-                            <th>Symbol</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Change</th>
-                            <th>24h Volume</th>
-                            <th></th>
-                            <th>Sparkline</th>
-                        </tr>
-                        <tr v-for="coin in displayCoinList" :key="coin.id" class="tbody">
-                            <td><img :src="coin.iconUrl" alt="" /></td>
-                            <td>{{ coin.rank }}</td>
-                            <td>{{ coin.symbol }}</td>
-                            <td>
-                                <router-link :to="{ name: 'coindetail', params: { uuid: coin.uuid } }">{{ coin.name }}
-                                </router-link>
-                            </td>
-                            <td>{{ coin.price }}</td>
-                            <td>{{ coin.change }}</td>
-                            <td>{{ coin.hVolume }}</td>
-                            <td>
-                                <v-btn color="teal" dark elevation="3" fab>
-                                    <v-icon>mdi-star-outline</v-icon>
-                                </v-btn>
-                            </td>
-                            <td>
-                                <v-sparkline :value="coin.chart">
-                                </v-sparkline>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr class="thead">
+                                <th>#</th>
+                                <th>Rank</th>
+                                <th>Symbol</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                                <th>24h Volume</th>
+                                <th>Sparkline</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="coin in displayCoinList" :key="coin.id" class="tbody">
+                                <td><img :src="coin.iconUrl" alt="" /></td>
+                                <td>{{ coin.rank }}</td>
+                                <td>{{ coin.symbol }}</td>
+                                <td>
+                                    <router-link :to="{ name: 'coindetail', params: { uuid: coin.uuid } }">{{ coin.name
+                                    }}
+                                    </router-link>
+                                </td>
+                                <td>{{ coin.price }}</td>
+                                <td>{{ coin.change }}</td>
+                                <td>{{ coin.hVolume }}</td>
+                                <td>
+                                    <v-sparkline :value="coin.chart" color="yellow">
+                                    </v-sparkline>
+                                </td>
+                                <td>
+                                    <v-btn color="yellow" light elevation="3" fab>
+                                        <v-icon>mdi-star-outline</v-icon>
+                                    </v-btn>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <div class="text-center">
-                        <v-btn outlined class="mr-1" color="primary" :disabled="page == 1 ? true : false"
+                    <div class="text-center mt-5">
+                        <v-btn outlined class="mr-1" color="yellow" :disabled="page == 1 ? true : false"
                             @click="getCoinsList('prev')">
                             <v-icon>mdi-arrow-left-thin</v-icon> prev
                         </v-btn>
-                        <v-btn outlined class="ml-1" color="primary" :disabled="page == 10 ? true : false"
+                        <v-btn outlined class="ml-1" color="yellow" :disabled="page == 10 ? true : false"
                             @click="getCoinsList('next')"> next <v-icon>mdi-arrow-right-thin</v-icon>
                         </v-btn>
                     </div>
@@ -150,12 +155,18 @@ td {
 }
 
 tr.thead {
-    background: #009688;
-    color: white;
+    background: #ffe600;
+    color: #000;
 }
 
 tr.tbody td img {
-    width: 30px;
+    width: 60px;
+    height: 60px;
     margin: 0px !important;
+    background: white;
+    border-radius: 100px;
+}
+tr.tbody:hover {
+    background: #ffffff20;
 }
 </style>

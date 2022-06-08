@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <h1>Top 6 Coins</h1>
-        <v-card flat class="topcoins">
+        <v-card color="#d1d1d1" flat class="topcoins">
             <v-card class="ma-2" v-for="coin in displayCoinList" :key="coin.id" dark>
                 <v-list-item three-line>
                     <v-list-item-content>
@@ -24,12 +24,12 @@
                     </v-list-item-avatar>
                 </v-list-item>
                 <div class="coinchart">
-                    <v-sparkline :value="coin.chart">
+                    <v-sparkline :value="coin.chart" color="#ffe000">
                     </v-sparkline>
                 </div>
 
                 <v-card-actions>
-                    <v-btn color="primary" outlined>
+                    <v-btn color="yellow" outlined>
                         <router-link :to="{ name: 'coindetail', params: { uuid: coin.uuid } }">See Coin
                         </router-link>
                     </v-btn>
@@ -40,7 +40,7 @@
         <v-divider class="my-3"></v-divider>
 
         <h1>Top 3 Best Coins</h1>
-        <v-card flat class="topcoins">
+        <v-card color="#d1d1d1" flat class="topcoins">
             <v-card class="ma-2" v-for="bestcoin in bestCoins" :key="bestcoin.id" dark>
                 <v-list-item three-line>
                     <v-list-item-content>
@@ -69,7 +69,7 @@
         <v-divider class="my-3"></v-divider>
 
         <h1>Top 3 New Coins</h1>
-        <v-card flat class="topcoins">
+        <v-card color="#d1d1d1" flat class="topcoins">
             <v-card class="ma-2" v-for="newcoin in newestCoins" :key="newcoin.id" dark>
                 <v-list-item three-line>
                     <v-list-item-content>
@@ -176,5 +176,16 @@ export default {
 .coinchart {
     background: #ffffff2e;
     padding: 15px;
+}
+
+@media  (max-width:900px) {
+    .topcoins {
+        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    }
+}
+@media  (max-width:500px) {
+    .topcoins {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
 }
 </style>

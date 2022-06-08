@@ -25,9 +25,19 @@ html {
   margin: 0px;
   padding: 0px;
 }
-.row{
+
+.row {
   display: unset;
 }
+
+#app {
+  background: #9E9E9E !important;
+}
+
+a {
+  color: yellow !important;
+}
+
 /* p{
   margin: 0px !important;
 } */
