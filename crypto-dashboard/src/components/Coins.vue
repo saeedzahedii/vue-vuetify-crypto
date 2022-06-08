@@ -46,6 +46,15 @@
                             </td>
                         </tr>
                     </table>
+                    <div class="text-center">
+                        <v-btn outlined class="mr-1" color="primary" :disabled="page == 1 ? true : false"
+                            @click="getCoinsList('prev')">
+                            <v-icon>mdi-arrow-left-thin</v-icon> prev
+                        </v-btn>
+                        <v-btn outlined class="ml-1" color="primary" :disabled="page == 10 ? true : false"
+                            @click="getCoinsList('next')"> next <v-icon>mdi-arrow-right-thin</v-icon>
+                        </v-btn>
+                    </div>
                 </v-card>
             </v-tab-item>
 
@@ -57,9 +66,9 @@
         </v-tabs-items>
     </v-card>
 
-</template>
-
-<script>
+</template >
+        
+            <script>
 import axios from 'axios'
 export default {
     name: 'CoinsComponent',
@@ -68,27 +77,53 @@ export default {
             tabs: null,
             coinsList: [],
             displayCoinList: [],
+            page: 1,
+            limit: 40,
+            offset: 0
         }
     },
     mounted() {
         axios({
-            method: "get",
-            baseURL: "https://api.coinranking.com/v2/coins?",
-            headers: {
-                "x-access-token": `token ${this.$access_token}`,
-            },
-        })
-            .then((resultat) => {
-                this.coinsList = resultat.data.data.coins;
-                this.displayCoinList = resultat.data.data.coins;
-                this.generateList(this.displayCoinList);
+            method: "get", baseURL: `https://api.coinranking.com/v2/coins?limit=${this.limit}&offset=${this.offset}`,
+            headers: { "x-access-token": `token ${this.$access_token}`, },
+        }).then((resultat) => {
+            this.coinsList = resultat.data.data.coins;
+            this.displayCoinList = resultat.data.data.coins;
+            this.generateList(this.displayCoinList);
 
-            })
+        })
             .catch((error) => {
                 console.log(error);
             });
     },
     methods: {
+        getCoinsList(btn) {
+            if (btn == 'next') {
+                this.offset = this.offset + this.limit;
+                this.page++;
+                console.log(this.page);
+            } else if (btn == 'prev') {
+                this.offset = this.offset - this.limit;
+                this.page--;
+                console.log(this.page);
+            }
+            axios({
+                method: "get",
+                baseURL: `https://api.coinranking.com/v2/coins?limit=${this.limit}&offset=${this.offset}`,
+                headers: {
+                    "x-access-token": `token ${this.$access_token}`,
+                },
+            })
+                .then((resultat) => {
+                    this.coinsList = resultat.data.data.coins;
+                    this.displayCoinList = resultat.data.data.coins;
+                    this.generateList(this.displayCoinList);
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
         generateList(coins) {
             let i = 0;
             coins.forEach((object) => {
@@ -101,13 +136,13 @@ export default {
                 i++;
             });
             console.log(coins)
-            //   console.log(coins);
+            // console.log(coins);
         },
     }
 }
 </script>
 
-<style scoped>
+                            <style scoped>
 th,
 td {
     padding: 10px;
